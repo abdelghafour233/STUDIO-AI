@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>MekShop | متجر المغرب إكسبرس - تسوق بذكاء</title>
+    <meta name="description" content="MekShop - وجهتكم الأولى للتسوق الإلكتروني في المغرب. أحدث الهواتف، تجهيزات المنزل، والسيارات. توصيل سريع لجميع المدن والدفع عند الاستلام." />
+    <meta name="keywords" content="mekshop, تسوق المغرب, الكترونيات, هواتف, اثاث, سيارات, الدفع عند الاستلام, المغرب إكسبرس, تخفيضات" />
+    <meta name="author" content="MekShop" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mekshop.store/" />
+    <meta property="og:title" content="MekShop | عروض حصرية وتوصيل سريع" />
+    <meta property="og:description" content="اكتشف أفضل العروض على الإلكترونيات والأثاث المنزلي. جودة عالية، ضمان، وتوصيل لباب منزلك في جميع أنحاء المغرب." />
+    <meta property="og:image" content="https://picsum.photos/id/3/1200/630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="MekShop | تسوق بأمان" />
+    <meta property="twitter:description" content="أفضل المنتجات بأفضل الأسعار في المغرب. اطلب الآن وادفع لاحقاً." />
+    <meta property="twitter:image" content="https://picsum.photos/id/3/1200/630" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo for professional Arabic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+      }
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #10b981; /* Emerald 500 */
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #059669; /* Emerald 600 */
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-50 text-gray-900">
+    <div id="root"></div>
+    
+    <!-- Dynamic Pixels Loader -->
+    <script>
+      // 1. Facebook Pixel
+      const fbPixelId = localStorage.getItem('fb_pixel_id');
+      if (fbPixelId) {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', fbPixelId);
+      }
+
+      // 2. Google Analytics (GA4)
+      const gaId = localStorage.getItem('ga_pixel_id');
+      if (gaId) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag; // Make accessible globally
+        gtag('js', new Date());
+        gtag('config', gaId);
+      }
+
+      // 3. TikTok Pixel
+      const tiktokId = localStorage.getItem('tiktok_pixel_id');
+      if (tiktokId) {
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+          ttq.load(tiktokId);
+          ttq.page();
+        }(window, document, 'ttq');
+      }
+
+      // 4. Microsoft Clarity
+      const clarityId = localStorage.getItem('clarity_id');
+      if (clarityId) {
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", clarityId);
+      }
+    </script>
+  </body>
+</html>
