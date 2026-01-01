@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Save, X, RefreshCw, Settings, CheckCircle, BarChart3, Sheet, Eye } from 'lucide-react';
+import { Plus, Edit, Trash2, Save, X, RefreshCw, Settings, CheckCircle, BarChart3, Sheet, Eye, Globe, ShieldCheck } from 'lucide-react';
 import { useProducts } from '../context/ProductContext';
 import { Product, Category } from '../types';
 import { CURRENCY } from '../constants';
@@ -15,7 +15,9 @@ const Admin = () => {
     ga: '',
     tiktok: '',
     clarity: '',
-    googleSheet: ''
+    googleSheet: '',
+    googleVerification: '',
+    facebookVerification: ''
   });
   const [showSaveSuccess, setShowSaveSuccess] = useState(false);
   const [visitorCount, setVisitorCount] = useState(0);
@@ -26,7 +28,9 @@ const Admin = () => {
       ga: localStorage.getItem('ga_pixel_id') || '',
       tiktok: localStorage.getItem('tiktok_pixel_id') || '',
       clarity: localStorage.getItem('clarity_id') || '',
-      googleSheet: localStorage.getItem('google_sheet_url') || ''
+      googleSheet: localStorage.getItem('google_sheet_url') || '',
+      googleVerification: localStorage.getItem('google_verification') || '',
+      facebookVerification: localStorage.getItem('facebook_verification') || ''
     });
 
     const visits = localStorage.getItem('site_visits');
@@ -39,10 +43,12 @@ const Admin = () => {
     localStorage.setItem('tiktok_pixel_id', pixelSettings.tiktok);
     localStorage.setItem('clarity_id', pixelSettings.clarity);
     localStorage.setItem('google_sheet_url', pixelSettings.googleSheet);
+    localStorage.setItem('google_verification', pixelSettings.googleVerification);
+    localStorage.setItem('facebook_verification', pixelSettings.facebookVerification);
     
     setShowSaveSuccess(true);
     setTimeout(() => setShowSaveSuccess(false), 3000);
-    // Reload to apply pixel changes
+    // Reload to apply pixel/meta changes
     setTimeout(() => window.location.reload(), 1000);
   };
 
@@ -133,10 +139,47 @@ const Admin = () => {
       {/* Settings Section */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-10">
         <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-gray-800 border-b pb-4">
-          <Settings size={20} /> الربط والخدمات الخارجية
+          <Settings size={20} /> الإعدادات والربط
         </h2>
         
-        <div className="space-y-6 mb-6">
+        <div className="space-y-8 mb-6">
+          {/* Domain Verification Section */}
+          <div className="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
+             <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                <ShieldCheck size={20} /> إثبات ملكية الدومين (Domain Verification)
+             </h3>
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                    Google Verification Code (HTML Tag)
+                  </label>
+                  <input 
+                    type="text" 
+                    value={pixelSettings.googleVerification} 
+                    onChange={(e) => handlePixelChange('googleVerification', e.target.value)} 
+                    placeholder="google-site-verification=..."
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none font-mono text-xs text-left ltr bg-white"
+                    dir="ltr"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">فقط الكود، مثال: <code>abc12345-xyz</code></p>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                    Facebook Domain Verification
+                  </label>
+                  <input 
+                    type="text" 
+                    value={pixelSettings.facebookVerification} 
+                    onChange={(e) => handlePixelChange('facebookVerification', e.target.value)} 
+                    placeholder="facebook-domain-verification=..."
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none font-mono text-xs text-left ltr bg-white"
+                    dir="ltr"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">فقط الكود، مثال: <code>abc12345xyz...</code></p>
+                </div>
+             </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Google Sheets */}
             <div className="col-span-1 md:col-span-2 bg-green-50 p-4 rounded-xl border border-green-100">
